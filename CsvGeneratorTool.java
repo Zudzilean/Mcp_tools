@@ -1,4 +1,4 @@
-package com.huawei;
+package com.test;
 
 import java.io.OutputStreamWriter;
 import java.io.IOException;
@@ -11,15 +11,24 @@ import java.io.FileOutputStream;
 
 // 假设McpServerEndpoint和ToolMapping注解已在项目中定义
 @McpServerEndpoint(sseEndpoint = "8080")
-@ToolMapping(description = "根据用户输入的文件路径和内容，生成一个CSV格式的表格文件并保存到指定路径。输入参数包括：文件保存路径（如 D:\\output\\data.csv），CSV内容（如每行用逗号分隔的字符串列表）。")
+@ToolMapping(description = "生成CSV文件，需提供文件保存路径filePath和CSV内容csvLines。" +
+        "filePath：CSV文件保存路径，如 D:/output/data.csv。" +
+        "csvLines：CSV内容，每行为一个用英文逗号分隔的字符串，如 '姓名,年龄,城市'。")
 public class CsvGeneratorTool {
     /**
      * 生成CSV文件
-     * @param filePath 文件保存路径，如 D:\\output\\data.csv
-     * @param csvLines 每行CSV内容，已按逗号分隔
+     * @param filePath 参数1：CSV文件保存路径，必须为可写入的完整路径
+     * @param csvLines 参数2：CSV内容，每行为一个字符串，内容用英文逗号分隔
      * @return 生成结果信息
      */
     public String generateCsv(String filePath, List<String> csvLines) {
+        // 参数判定
+        if (filePath == null || filePath.trim().isEmpty()) {
+            return "参数错误：filePath不能为空";
+        }
+        if (csvLines == null || csvLines.isEmpty()) {
+            return "参数错误：csvLines不能为空";
+        }
         System.out.println("[调试] generateCsv 被调用，filePath: " + filePath + ", csvLines: " + csvLines);
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
