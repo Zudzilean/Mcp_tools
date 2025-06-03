@@ -1,8 +1,9 @@
 package com.huawei;
 
-import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.List;
+import java.nio.charset.StandardCharsets;
 
 // 假设McpServerEndpoint和ToolMapping注解已在项目中定义
 @McpServerEndpoint(sseEndpoint = "8080")
@@ -15,7 +16,8 @@ public class CsvGeneratorTool {
      * @return 生成结果信息
      */
     public String generateCsv(String filePath, List<String> csvLines) {
-        try (FileWriter writer = new FileWriter(filePath)) {
+        try (OutputStreamWriter writer = new OutputStreamWriter(
+                new java.io.FileOutputStream(filePath), StandardCharsets.UTF_8)) {
             for (String line : csvLines) {
                 writer.write(line);
                 writer.write(System.lineSeparator());
