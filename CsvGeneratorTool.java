@@ -4,6 +4,10 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.List;
 import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 // 假设McpServerEndpoint和ToolMapping注解已在项目中定义
 @McpServerEndpoint(sseEndpoint = "8080")
@@ -17,7 +21,8 @@ public class CsvGeneratorTool {
      */
     public String generateCsv(String filePath, List<String> csvLines) {
         try (OutputStreamWriter writer = new OutputStreamWriter(
-                new java.io.FileOutputStream(filePath), StandardCharsets.UTF_8)) {
+                new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
+            writer.write('\uFEFF'); // 写入UTF-8 BOM
             for (String line : csvLines) {
                 writer.write(line);
                 writer.write(System.lineSeparator());
@@ -40,7 +45,8 @@ public class CsvGeneratorTool {
         String result = tool.generateCsv(filePath, csvLines);
         System.out.println(result);
         // 读取文件内容验证中文
-        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(new java.io.FileInputStream(filePath), java.nio.charset.StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
             String line;
             System.out.println("\n文件内容:");
             while ((line = reader.readLine()) != null) {
