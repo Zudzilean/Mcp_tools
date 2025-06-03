@@ -15,10 +15,20 @@ public class CsvGeneratorToolController {
         tool.put("name", "CsvGeneratorTool");
         tool.put("description", "根据用户输入的文件路径和内容，生成一个CSV格式的表格文件并保存到指定路径。输入参数包括：文件保存路径（如 D:\\output\\data.csv），CSV内容（如每行用逗号分隔的字符串列表）。");
         List<Map<String, String>> params = new ArrayList<>();
-        params.add(Map.of("name", "filePath", "type", "string", "description", "文件保存路径"));
-        params.add(Map.of("name", "csvLines", "type", "array", "description", "每行CSV内容"));
+        Map<String, String> param1 = new HashMap<>();
+        param1.put("name", "filePath");
+        param1.put("type", "string");
+        param1.put("description", "文件保存路径");
+        params.add(param1);
+        Map<String, String> param2 = new HashMap<>();
+        param2.put("name", "csvLines");
+        param2.put("type", "array");
+        param2.put("description", "每行CSV内容");
+        params.add(param2);
         tool.put("parameters", params);
-        return List.of(tool);
+        List<Map<String, Object>> toolList = new ArrayList<>();
+        toolList.add(tool);
+        return toolList;
     }
 
     // 工具调用接口，供Dify调用
