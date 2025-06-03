@@ -20,6 +20,7 @@ public class CsvGeneratorTool {
      * @return 生成结果信息
      */
     public String generateCsv(String filePath, List<String> csvLines) {
+        System.out.println("[调试] generateCsv 被调用，filePath: " + filePath + ", csvLines: " + csvLines);
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
             writer.write('\uFEFF'); // 写入UTF-8 BOM
@@ -27,9 +28,13 @@ public class CsvGeneratorTool {
                 writer.write(line);
                 writer.write(System.lineSeparator());
             }
-            return "CSV文件已成功生成：" + filePath;
+            String msg = "CSV文件已成功生成：" + filePath;
+            System.out.println("[调试] " + msg);
+            return msg;
         } catch (IOException e) {
-            return "生成CSV文件失败：" + e.getMessage();
+            String err = "生成CSV文件失败：" + e.getMessage();
+            System.out.println("[调试] " + err);
+            return err;
         }
     }
 
