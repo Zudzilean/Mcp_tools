@@ -29,7 +29,7 @@ public class CsvGeneratorTool {
     public static void main(String[] args) {
         CsvGeneratorTool tool = new CsvGeneratorTool();
         String filePath = "test.csv";
-        List<String> csvLines = List.of(
+        java.util.List<String> csvLines = java.util.Arrays.asList(
             "姓名,年龄,城市",
             "张三,28,北京",
             "李四,30,上海",
