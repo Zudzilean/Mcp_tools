@@ -3,14 +3,14 @@ package com.example.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @TableName("Loc_IOM_terminal_detail")
 public class LocIOMTerminalDetail {
     
-    @TableField("REGIN")
-    private String regin;
+    @TableField("REGION")
+    private String region;
     
     @TableField("REGIONCODE")
     private String regionCode;
@@ -40,13 +40,13 @@ public class LocIOMTerminalDetail {
     private String status;
     
     @TableField("STATUSDATE")
-    private Date statusDate;
+    private LocalDateTime statusDate;
     
     @TableField("IOMINTIME")
-    private Date iomInTime;
+    private LocalDateTime iomInTime;
     
     @TableField("FIXTIME")
-    private Date fixTime;
+    private LocalDateTime fixTime;
     
     @TableField("USETYPE")
     private String useType;
@@ -58,7 +58,7 @@ public class LocIOMTerminalDetail {
     private String useDepartment;
     
     @TableField("BOSSINTIOME")
-    private Date bossInTime;
+    private LocalDateTime bossInTime;
     
     @TableField("FILENAME")
     private String fileName;

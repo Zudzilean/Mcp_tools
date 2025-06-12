@@ -5,15 +5,27 @@
     <!-- 根据日期范围查询数据 -->
     <select id="getByDateRange" resultType="com.example.entity.LocIOMTerminalDetail">
         SELECT 
-            id,
-            region,
-            material_code as materialCode,
-            description,
-            create_time as createTime,
-            update_time as updateTime
-        FROM loc_iom_terminal_detail
-        WHERE create_time BETWEEN #{startDate} AND #{endDate}
-        ORDER BY create_time DESC
+            REGION,
+            REGIONCODE,
+            COUNTRY,
+            IMEI,
+            MATERIALCODE,
+            TERMINALNAME,
+            TERMINALKINCODE,
+            "TERMINAL TYPE" as terminalType,
+            CATEGORY,
+            STAUS as status,
+            STATUSDATE,
+            IOMINTIME,
+            FIXTIME,
+            USETYPE,
+            USERNAME,
+            USEDEPARTMENT,
+            BOSSINTIOME,
+            FILENAME
+        FROM Loc_IOM_terminal_detail
+        WHERE STATUSDATE BETWEEN #{startDate} AND #{endDate}
+        ORDER BY STATUSDATE DESC
     </select>
     
 </mapper> 

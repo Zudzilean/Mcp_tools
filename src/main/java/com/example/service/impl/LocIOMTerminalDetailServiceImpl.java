@@ -128,7 +128,7 @@ public class LocIOMTerminalDetailServiceImpl extends ServiceImpl<LocIOMTerminalD
                             return fieldValue.contains((String) value);
                         } else if (value instanceof Number) {
                             try {
-                                if (field.equals("region") || field.equals("getRegin") ||
+                                if (field.equals("region") ||
                                     field.equals("materialCode") || field.equals("MaterialCode")) {
                                     int recordValue = Integer.parseInt(fieldValue);
                                     int conditionValue = ((Number) value).intValue();
