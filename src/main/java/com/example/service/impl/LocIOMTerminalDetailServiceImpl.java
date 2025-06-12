@@ -45,18 +45,33 @@ public class LocIOMTerminalDetailServiceImpl extends ServiceImpl<LocIOMTerminalD
             
             // 添加表头
             String header = String.join(CSV_DELIMITER, 
-                "ID", "Region", "MaterialCode", "Description", "CreateTime", "UpdateTime");
+                "REGION", "REGIONCODE", "COUNTRY", "IMEI", "MATERIALCODE", 
+                "TERMINALNAME", "TERMINALKINCODE", "TERMINAL TYPE", "CATEGORY", 
+                "STAUS", "STATUSDATE", "IOMINTIME", "FIXTIME", "USETYPE", 
+                "USERNAME", "USEDEPARTMENT", "BOSSINTIOME", "FILENAME");
             lines.add(header);
             
             // 添加数据行
             for (LocIOMTerminalDetail data : dataList) {
                 String line = String.join(CSV_DELIMITER,
-                    String.valueOf(data.getId()),
                     String.valueOf(data.getRegion()),
+                    String.valueOf(data.getRegionCode()),
+                    String.valueOf(data.getCountry()),
+                    String.valueOf(data.getImei()),
                     String.valueOf(data.getMaterialCode()),
-                    CSV_QUOTE + data.getDescription() + CSV_QUOTE,
-                    data.getCreateTime().format(DATE_FORMATTER),
-                    data.getUpdateTime().format(DATE_FORMATTER)
+                    CSV_QUOTE + data.getTerminalName() + CSV_QUOTE,
+                    String.valueOf(data.getTerminalKinCode()),
+                    CSV_QUOTE + data.getTerminalType() + CSV_QUOTE,
+                    String.valueOf(data.getCategory()),
+                    String.valueOf(data.getStatus()),
+                    data.getStatusDate().format(DATE_FORMATTER),
+                    data.getIomInTime().format(DATE_FORMATTER),
+                    data.getFixTime().format(DATE_FORMATTER),
+                    String.valueOf(data.getUseType()),
+                    String.valueOf(data.getUserName()),
+                    String.valueOf(data.getUseDepartment()),
+                    data.getBossInTime().format(DATE_FORMATTER),
+                    String.valueOf(data.getFileName())
                 );
                 lines.add(line);
             }
