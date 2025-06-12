@@ -1,4 +1,14 @@
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
+{
+    "startDate": "2024-03-20 00:00:00",
+    "endDate": "2024-03-20 23:59:59",
+    "outputPath": "D:/output/terminal_data_20240320.csv"
+}
+{
+    "sourceCsvPath": "D:/output/terminal_data_20240320.csv",
+    "conditions": {
+        "region": "APAC",
+        "materialCode": "12345",
+        "status": "ACTIVE"
+    },
+    "outputPath": "D:/output/filtered_terminal_data.csv"
+}
